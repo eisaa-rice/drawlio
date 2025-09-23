@@ -13,9 +13,8 @@ const Button = ({
 }) => {
   return (
     <button
-      // border border-neutral-400
       className={`flex items-center justify-center gap-4
-        m-auto hover:cursor-pointer
+        hover:cursor-pointer
         ${style}`}
       onClick={onClick}
     >

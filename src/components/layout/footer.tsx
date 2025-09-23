@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-fit text-center text-sm mx-auto my-6">
+    <footer className="w-fit text-center text-sm mx-auto mt-32 mb-8">
       made with ❤️ by{" "}
       <a
         href="https://jesusorozco.dev/"

@@ -5,13 +5,16 @@ import { Image as ImageIcon, Upload } from "lucide-react";
 
 const PromptActions = () => {
   return (
-    <div className="flex items-center justify-center mt-12 mx-32 gap-4 bg-opac">
+    <div
+      className="flex flex-col sm:flex-row items-center justify-center 
+      mt-12 mx-32 gap-4 sm:gap-20"
+    >
       {/* upload their own reference photo */}
       <Button
         text="Upload Photo"
         onClick={() => console.log("upload photo")}
-        style="px-6 py-3 w-fit text-neutral-800 
-        rounded-full shadow-md
+        style="px-6 py-3 text-neutral-800 whitespace-nowrap
+        rounded-full shadow-md bg-white 
         hover:cursor-pointer hover:scale-105 transition-all"
       >
         <ImageIcon
@@ -26,16 +29,11 @@ const PromptActions = () => {
       <Button
         text="Submit Drawing"
         onClick={() => console.log("submit drawing")}
-        style="px-6 py-3 w-fit text-neutral-300
+        style="px-6 py-3 text-white whitespace-nowrap
         rounded-full shadow-md shadow-neutral-400 bg-neutral-800
         hover:cursor-pointer hover:scale-105 transition-all"
       >
-        <Upload
-          size={20}
-          strokeWidth={1}
-          color="#d4d4d4" // text-neutral-300
-          className="shrink-0"
-        />
+        <Upload size={20} strokeWidth={1} color="white" className="shrink-0" />
       </Button>
     </div>
   );

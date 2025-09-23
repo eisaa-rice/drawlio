@@ -16,15 +16,17 @@ const Home = async () => {
 
   return (
     <main
-      className="flex flex-col justify-center 
+      className="flex flex-col items-center justify-center 
       max-w-3xl m-auto px-4 py-12"
     >
-      <h1 className="mb-8 text-2xl font-medium">{today}.</h1>
+      <h1 className="text-2xl text-center font-medium mb-6">{today}</h1>
 
-      <div className="rounded-lg border border-neutral-400 p-4 shadow">
+      {/* <div className="w-2/3 h-px bg-neutral-500 rounded-full mt-2 mb-6" /> */}
+
+      <div className="">
         <div className="relative w-full h-[36rem]">
           <Image
-            className="object-cover rounded" // object-cover fills container, cropping off at the edges as necessary
+            className="object-cover rounded shadow-md" // object-cover fills container, cropping off at the edges as necessary
             fill
             src={prompt.link}
             alt={prompt.title}

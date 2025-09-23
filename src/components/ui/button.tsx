@@ -2,25 +2,27 @@
 
 const Button = ({
   text,
-  // icon,
   onClick,
   style,
+  children,
 }: {
-  text: string;
-  // icon: string;
+  text?: string;
   onClick: () => void;
   style?: string;
+  children?: React.ReactNode;
 }) => {
   return (
     <button
-      className={`px-4 py-2 w-fit mx-auto border border-neutral-400 rounded
-        hover:cursor-pointer hover:bg-neutral-100
-        transition-all ${style}`}
+      // border border-neutral-400
+      className={`flex items-center justify-center gap-4
+        m-auto hover:cursor-pointer
+        ${style}`}
       onClick={onClick}
     >
       {text}
 
       {/* icon here */}
+      {children}
     </button>
   );
 };

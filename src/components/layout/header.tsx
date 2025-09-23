@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { User } from "lucide-react";
 
 const Header = () => {
   const pathName = usePathname();
@@ -10,15 +11,22 @@ const Header = () => {
   return (
     <header className="p-4 flex items-center justify-between max-w-5xl m-auto">
       <Link href="/">
-        <h1 className="text-2xl font-bold">Drawlio 🎨</h1>
+        <h1 className="text-2xl font-bold text-neutral-800  drop-shadow-sm">
+          Drawlio 🎨
+        </h1>
       </Link>
 
       {!isProfilePage && (
         <Link
-          href="/profile"
-          className="h-12 w-12 rounded-full border border-neutral-400 p-4 
-          hover:cursor-pointer hover:bg-neutral-100"
-        ></Link>
+          href="/account"
+          className="h-12 w-12 flex items-center justify-center p-4 shrink-0
+          rounded-lg shadow-md
+
+
+          hover:cursor-pointer hover:scale-105 transition-all"
+        >
+          <User size={32} strokeWidth={2} color="black" className="shrink-0" />
+        </Link>
       )}
     </header>
   );

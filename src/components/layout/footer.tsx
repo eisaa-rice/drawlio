@@ -1,7 +1,15 @@
 const Footer = () => {
   return (
-    <footer className="border-t border-neutral-400 p-8 text-center text-sm text-neutral-500">
-      © {new Date().getFullYear()} drawlio — keep sketching ✏️
+    <footer className="w-fit text-center text-sm mx-auto my-6">
+      made with ❤️ by{" "}
+      <a
+        href="https://jesusorozco.dev/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline hover:text-neutral-800"
+      >
+        jésus
+      </a>
     </footer>
   );
 };

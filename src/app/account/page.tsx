@@ -1,4 +1,4 @@
-export default function ProfilePage() {
+export default function AccountPage() {
   return (
     <main className="p-6">
       <h1 className="text-2xl font-bold mb-4">Your History</h1>

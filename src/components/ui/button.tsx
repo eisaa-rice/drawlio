@@ -1,11 +1,21 @@
 "use client";
 
-const Button = ({ text, onClick }: { text: string; onClick: () => void }) => {
+const Button = ({
+  text,
+  // icon,
+  onClick,
+  style,
+}: {
+  text: string;
+  // icon: string;
+  onClick: () => void;
+  style?: string;
+}) => {
   return (
     <button
-      className="p-2 w-fit mt-4 mx-auto border border-neutral-400 rounded
+      className={`px-4 py-2 w-fit mx-auto border border-neutral-400 rounded
         hover:cursor-pointer hover:bg-neutral-100
-        transition-all "
+        transition-all ${style}`}
       onClick={onClick}
     >
       {text}

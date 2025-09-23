@@ -1,6 +1,7 @@
 import PromptActions from "@/components/prompt-actions";
-import Button from "@/components/ui/button";
+import Timer from "@/components/timer";
 import { getDailyPrompt } from "@/lib/prompt";
+
 import Image from "next/image";
 
 const Home = async () => {
@@ -18,7 +19,7 @@ const Home = async () => {
       className="flex flex-col justify-center 
       max-w-3xl m-auto px-4 py-12"
     >
-      <h1 className="mb-8 text-2xl font-medium">{today}</h1>
+      <h1 className="mb-8 text-2xl font-medium">{today}.</h1>
 
       <div className="rounded-lg border border-neutral-400 p-4 shadow">
         <div className="relative w-full h-[36rem]">
@@ -37,6 +38,8 @@ const Home = async () => {
       </div>
 
       <PromptActions />
+
+      <Timer />
     </main>
   );
 };

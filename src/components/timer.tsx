@@ -3,85 +3,127 @@
 import { useState } from "react";
 
 import Button from "./ui/button";
-import Input from "./ui/input";
 
-import { Square, Pause, Play } from "lucide-react";
+import { RotateCcw, Pause, Play } from "lucide-react";
+
+const NumInput = ({
+  label,
+  value,
+  onChange,
+  min,
+  max,
+  digits,
+  style,
+}: {
+  label: string;
+  value: number;
+  onChange: (num: number) => void;
+  min: number;
+  max: number;
+  digits: number;
+  style: string;
+}) => {
+  const clamp = (n: number) => {
+    return Math.min(Math.max(n, min), max);
+  };
+
+  return (
+    <label className="flex flex-col items-center justify-center gap-1">
+      <input
+        className={`text-center font-light h-10 w-[${digits}ch]
+        outline-none focus:ring focus:ring-black/10 tracking-tight
+        leading-none caret-transparent rounded-md
+        [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
+        ${style}`}
+        name={label.toLowerCase()}
+        type="number"
+        inputMode="numeric"
+        min={min}
+        max={max}
+        value={value}
+        onChange={(e) => {
+          onChange(clamp(Number(e.target.value)));
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowUp") {
+            e.preventDefault();
+            onChange(clamp(value + 1));
+          }
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            onChange(clamp(value - 1));
+          }
+        }}
+        style={{ width: `${digits}ch` }}
+      />
+
+      <span className="text-xs text-neutral-600">{label}</span>
+    </label>
+  );
+};
 
 const Timer = () => {
   const [hours, setHours] = useState(1);
   const [minutes, setMinutes] = useState(30);
   const [seconds, setSeconds] = useState(10);
 
-  const handleChange = (value: number, func: (val: number) => void) => {
-    if (value > 1 && value < 99) {
-      func(value);
-    }
-  };
-
   return (
     <div
-      className="flex flex-col items-center justify-center gap-4
-      fixed bottom-4 right-4
-      rounded-lg shadow-md backdrop-blur-3xl bg-white/50 p-4"
+      className="flex flex-col items-center justify-center gap-4 mt-24 xl:mt-0
+      rounded-lg shadow-md backdrop-blur-xl bg-white/50 p-4 w-52"
     >
       <div className="text-5xl font-thin flex items-center justify-center gap-2">
-        <Input
+        <NumInput
           label="Hours"
-          labelStyle="text-sm font-normal"
-          type="number"
-          width={2}
-          inputStyle="text-3xl"
           value={hours}
-          onChange={(e) => setHours(Number(e.target.value))}
+          onChange={setHours}
+          min={0}
+          max={99}
+          digits={2}
+          style="text-4xl"
         />
 
-        <Input
+        <span className="pb-6 text-2xl select-none">:</span>
+
+        <NumInput
           label="Minutes"
-          labelStyle="text-sm font-normal"
-          type="number"
-          width={2}
-          inputStyle="text-3xl"
           value={minutes}
-          onChange={(e) => setMinutes(Number(e.target.value))}
+          onChange={setMinutes}
+          min={0}
+          max={59}
+          digits={2}
+          style="text-4xl"
         />
 
-        <Input
+        <span className="pb-6 text-2xl select-none">:</span>
+
+        <NumInput
           label="Seconds"
-          labelStyle="text-sm font-normal"
-          type="number"
-          width={2}
-          inputStyle="text-3xl"
           value={seconds}
-          onChange={(e) => setSeconds(Number(e.target.value))}
+          onChange={setSeconds}
+          min={0}
+          max={59}
+          digits={2}
+          style="text-4xl"
         />
       </div>
 
       <div className="flex items-center justify-center gap-8">
-        <Button onClick={() => setSeconds((prev) => prev - 5)}>
-          <Square
+        <Button onClick={() => console.log("reset")}>
+          <RotateCcw
             size={24}
             strokeWidth={1}
             color="black"
-            className="shrink-0 fill-black"
+            className="shrink-0"
           />
         </Button>
 
-        <Button onClick={() => setSeconds((prev) => prev + 5)}>
-          <Pause
-            size={24}
-            strokeWidth={1}
-            color="black"
-            className="shrink-0 fill-black"
-          />
+        <Button onClick={() => console.log("pause")}>
+          <Pause size={24} strokeWidth={1} color="black" className="shrink-0" />
         </Button>
 
-        <Button onClick={() => setSeconds((prev) => prev + 5)}>
-          <Play
-            size={24}
-            strokeWidth={1}
-            color="black"
-            className="shrink-0 fill-black"
-          />
+        <Button onClick={() => console.log("play")}>
+          <Play size={24} strokeWidth={1} color="black" className="shrink-0" />
         </Button>
       </div>
     </div>

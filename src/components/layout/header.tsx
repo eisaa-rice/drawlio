@@ -23,7 +23,7 @@ const Header = () => {
           rounded-lg shadow-md bg-white
           hover:cursor-pointer hover:scale-105 transition-all"
         >
-          <User size={32} strokeWidth={2} color="black" className="shrink-0" />
+          <User size={32} strokeWidth={1} color="black" className="shrink-0" />
         </Link>
       )}
     </header>

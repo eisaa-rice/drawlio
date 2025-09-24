@@ -20,7 +20,7 @@ const Header = () => {
         <Link
           href="/account"
           className="h-12 w-12 flex items-center justify-center p-4 shrink-0
-          rounded-lg shadow-md bg-white
+          rounded-lg shadow-md bg-white border border-neutral-100
           hover:cursor-pointer hover:scale-105 transition-all"
         >
           <User size={32} strokeWidth={1} color="black" className="shrink-0" />

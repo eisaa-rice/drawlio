@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Button from "./ui/button";
 
@@ -63,14 +63,46 @@ const NumInput = ({
 };
 
 const Timer = () => {
-  const [hours, setHours] = useState(1);
-  const [minutes, setMinutes] = useState(30);
-  const [seconds, setSeconds] = useState(10);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(30);
+
+  const [isRunning, setIsRunning] = useState(false);
+  const [reset, setReset] = useState<[number, number, number]>([
+    hours,
+    minutes,
+    seconds,
+  ]);
+
+  const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+  useEffect(() => {
+    if (!isRunning) return;
+
+    const interval = setInterval(() => {
+      if (totalSeconds > 0) {
+        const newTotal = totalSeconds - 1;
+
+        const h = Math.floor(newTotal / 3600);
+        const m = Math.floor((newTotal % 3600) / 60);
+        const s = newTotal % 60;
+
+        setHours(h);
+        setMinutes(m);
+        setSeconds(s);
+      } else {
+        setIsRunning(false);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isRunning, totalSeconds]);
 
   return (
     <div
       className="flex flex-col items-center justify-center gap-4 mt-24 xl:mt-0
-      rounded-lg shadow-md backdrop-blur-xl bg-white/50 p-4 w-52"
+      rounded-lg shadow-md backdrop-blur-xl bg-white/50 p-4 w-52
+      border border-neutral-100"
     >
       <div className="text-5xl font-thin flex items-center justify-center gap-2">
         <NumInput
@@ -109,7 +141,13 @@ const Timer = () => {
       </div>
 
       <div className="flex items-center justify-center gap-8">
-        <Button onClick={() => console.log("reset")}>
+        <Button
+          onClick={() => {
+            setHours(reset[0]);
+            setMinutes(reset[1]);
+            setSeconds(reset[2]);
+          }}
+        >
           <RotateCcw
             size={24}
             strokeWidth={1}
@@ -118,11 +156,16 @@ const Timer = () => {
           />
         </Button>
 
-        <Button onClick={() => console.log("pause")}>
+        <Button onClick={() => setIsRunning(false)}>
           <Pause size={24} strokeWidth={1} color="black" className="shrink-0" />
         </Button>
 
-        <Button onClick={() => console.log("play")}>
+        <Button
+          onClick={() => {
+            setReset([hours, minutes, seconds]);
+            setIsRunning(true);
+          }}
+        >
           <Play size={24} strokeWidth={1} color="black" className="shrink-0" />
         </Button>
       </div>

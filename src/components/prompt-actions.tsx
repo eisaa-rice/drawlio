@@ -14,7 +14,7 @@ const PromptActions = () => {
         text="Upload Photo"
         onClick={() => console.log("upload photo")}
         style="px-6 py-3 text-neutral-800 whitespace-nowrap
-        rounded-full shadow-md bg-white 
+        rounded-full shadow-md bg-white border border-neutral-100
         hover:cursor-pointer hover:scale-105 transition-all"
       >
         <ImageIcon
@@ -30,6 +30,7 @@ const PromptActions = () => {
         text="Submit Drawing"
         onClick={() => console.log("submit drawing")}
         style="px-6 py-3 text-white whitespace-nowrap
+        border border-neutral-800
         rounded-full shadow-md shadow-neutral-400 bg-neutral-800
         hover:cursor-pointer hover:scale-105 transition-all"
       >
